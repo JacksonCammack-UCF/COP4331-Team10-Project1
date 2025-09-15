@@ -112,7 +112,7 @@ function addContact() {
       if (json && json.error) { setAlert("contactAddResult", "danger", json.error); return; }
       setAlert("contactAddResult", "success", "Contact has been added");
       ["firstName","lastName","email","phone"].forEach(id => { const el = $(id); if (el) el.value = ""; });
-      searchContacts();
+      searchContacts(); 
     })
     .catch((e) => setAlert("contactAddResult", "danger", e.message || "Add failed"));
 }
