@@ -1,13 +1,7 @@
-/* =====================================
-   API base (server only)
-===================================== */
 const isTestPath = location.pathname.startsWith("/test/");
 const urlBase = `${location.origin}${isTestPath ? "/test/LAMPAPI" : "/LAMPAPI"}`;
 const extension = "php";
 
-/* =====================================
-   Session & helpers
-===================================== */
 let userId = 0;
 let firstName = "";
 let lastName  = "";
@@ -32,9 +26,6 @@ function escapeHTML(s) {
     .replaceAll("'", "&#039;");
 }
 
-/* =====================================
-   Simple JSON POST (same-origin)
-===================================== */
 function postJSON(path, body = {}) {
   return fetch(`${urlBase}/${path}.${extension}`, {
     method: "POST",
@@ -48,9 +39,6 @@ function postJSON(path, body = {}) {
   });
 }
 
-/* =====================================
-   Auth
-===================================== */
 function doLogin() {
   userId = 0; firstName = ""; lastName = "";
   const login = $("loginName")?.value?.trim() || "";
@@ -102,15 +90,9 @@ function doLogout() {
   window.location.href = "index.html";
 }
 
-/* =====================================
-   Validation (light)
-===================================== */
 const validEmail = (s) => !s || /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(s);
 const validPhone = (s) => !s || /^[0-9+\-() ]{7,20}$/.test(s);
 
-/* =====================================
-   Contacts: Add / Search / Delete / Update
-===================================== */
 function addContact() {
   setAlert("contactAddResult", "", "");
   const f = $("firstName")?.value?.trim() || "";
@@ -130,7 +112,7 @@ function addContact() {
       if (json && json.error) { setAlert("contactAddResult", "danger", json.error); return; }
       setAlert("contactAddResult", "success", "Contact has been added");
       ["firstName","lastName","email","phone"].forEach(id => { const el = $(id); if (el) el.value = ""; });
-      searchContacts(); // refresh with current query
+      searchContacts();
     })
     .catch((e) => setAlert("contactAddResult", "danger", e.message || "Add failed"));
 }
@@ -148,7 +130,6 @@ function searchContacts() {
 
   postJSON("SearchContacts", { search: q, userID: userId, limit, offset })
     .then((json) => {
-      // Accept several shapes from backend
       let rows = [];
       if (Array.isArray(json.results)) rows = json.results;
       else if (Array.isArray(json.Contacts)) rows = json.Contacts;
@@ -231,9 +212,6 @@ function updateContact(id, updates) {
     .catch((e) => console.error(e));
 }
 
-/* =====================================
-   Register
-===================================== */
 function doRegister() {
   const f = $("regFirstName")?.value?.trim() || "";
   const l = $("regLastName") ?.value?.trim() || "";
@@ -242,7 +220,6 @@ function doRegister() {
 
   if (!f || !l || !login || !password) { setAlert("registerResult", "danger", "Please fill in all fields."); return; }
 
-  // course template typically expects these names
   postJSON("Register", { FirstName: f, LastName: l, Login: login, Password: password })
     .then((json) => {
       if (json && json.error) { setAlert("registerResult", "danger", json.error); return; }
@@ -252,9 +229,6 @@ function doRegister() {
     .catch((e) => setAlert("registerResult", "danger", e.message || "Registration failed"));
 }
 
-/* =====================================
-   Expose to window
-===================================== */
 window.doLogin = doLogin;
 window.readCookie = readCookie;
 window.doLogout = doLogout;
