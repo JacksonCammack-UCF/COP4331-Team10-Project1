@@ -138,3 +138,25 @@ select{
     font-family: 'Ubuntu', sans-serif;
     color: #95060a;
 }
+
+.danger-text {
+  background: transparent !important;
+  border: 0 !important;
+  padding: 0;
+  margin-left: 6px;
+  font: inherit;
+  line-height: inherit;
+  color: #b32020;
+  font-weight: 600;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  box-shadow: none !important;
+}
+.danger-text:hover {
+  text-decoration: underline;
+}
+.danger-text:focus {
+  outline: none;
+  box-shadow: none;
+}

@@ -1,140 +1,202 @@
-body 
-{
-    background-color: #707070;
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: "Ubuntu", Arial, sans-serif;
+  background: #ffffff;
+  color: #222;
 }
 
-#title 
-{
-    font-size: 40px;
-    width: 100%;
-    margin: 2% 5%;
-    text-align: center;
-    font-family: 'Ubuntu', sans-serif;
-    color: #FFFFFF;
+:root {
+  --brand-blue: #2f4f8a;
+  --brand-blue-dark: #284675;
 }
 
-#loginDiv
-{
-    font-size: 30px;
-    width: 70%;
-    margin-left: 15%;
-    padding: 25px;
-    background-color: #b2b2b2;
+a {
+  color: var(--brand-blue);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--brand-blue-dark);
+  text-decoration: underline;
 }
 
-#loggedInDiv
-{
-    font-size: 30px;
-    width: 70%;
-    margin-left: 15%;
-    padding: 25px;
-    background-color: #b2b2b2;
+#title {
+  margin: 28px 0 16px;
+  font-size: 28px;
+  font-weight: 700;
+  text-align: center;
+  color: #111;
 }
 
-#accessUIDiv
-{
-    font-size: 30px;
-    width: 70%;
-    margin-left: 15%;
-    padding: 25px;
-    background-color: #b2b2b2;
+#inner-title {
+  display: inline-block;
+  margin-bottom: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #333;
 }
 
-.buttons
-{
-    font-size: 30px;
-    border-radius: 25px;
-    width: 50%;
-    margin-left: 25%;
-    font-family: 'Ubuntu', sans-serif;
+#loginDiv,
+#registerDiv,
+#contactsDiv {
+  width: 100%;
+  max-width: 920px;
+  box-sizing: border-box;
+  padding: 18px 14px;
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fafafa;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
 }
 
-.buttons:hover{
-    background-color: #00d5124f;
-    color: #FFFFFF;
-    opacity: 50%;
+#loginDiv input,
+#registerDiv input,
+#contactsDiv input,
+#contactsDiv select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 10px;
+  margin: 6px 0;
+  border-radius: 6px;
+  border: 1px solid #bbb;
+  background: #fff;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.12s ease, box-shadow 0.12s ease;
+}
+#loginDiv input:focus,
+#registerDiv input:focus,
+#contactsDiv input:focus,
+#contactsDiv select:focus {
+  border-color: var(--brand-blue);
+  box-shadow: 0 0 0 3px rgba(47, 79, 138, 0.25);
 }
 
-#loginName
-{
-	font-size: 30px;
+.buttons {
+  width: 100%;
+  padding: 11px 14px;
+  margin-top: 8px;
+  border: 0;
+  border-radius: 6px;
+  background: var(--brand-blue);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
 }
-#loginPassword
-{
-	font-size: 30px;
+.buttons:hover {
+  filter: brightness(1.03);
 }
-#searchText
-{
-	font-size: 30px;
-}
-#colorText
-{
-	font-size: 30px;
-}
-
-input[type="text"],input[type="password"]{
-    border-radius: 25px;
-    text-align: center;
-    width: 80%;
-    margin-left: 10%;
-    margin-bottom: 2%;
-    font-family: 'Ubuntu', sans-serif;
+.buttons:active {
+  transform: translateY(1px);
 }
 
-#inner-title{
-    display: inline-block;
-    font-size: 0.8em;
-    width: 90%;
-    text-align: center;
-    margin-left: 5%;
-    margin-bottom: 2%;
-    font-family: 'Ubuntu', sans-serif;
-    color: #95060a;
+.sub-actions {
+  margin-top: 10px;
+}
+.sub-link {
+  color: var(--brand-blue);
+  text-decoration: none;
+  font-size: 14px;
+}
+.sub-link:hover {
+  text-decoration: underline;
 }
 
-#loginResult{
-    display: inline-block;
-    font-size: 0.8em;
-    width: 90%;
-    text-align: center;
-    margin-left: 5%;
-    margin-bottom: 2%;
-    font-family: 'Ubuntu', sans-serif;
-    color: #95060a;
+#loginResult,
+#registerResult,
+#addResult {
+  min-height: 1.3em;
+  margin-top: 10px;
+  font-weight: 600;
 }
 
-#userName{
-    display: inline-block;
-    width: 80%;
-    margin-left: 10%;
-    text-align: center;
+.small-note {
+  font-size: 0.95rem;
+  color: #555;
 }
 
-#logoutButton{
-    width: 20%;
-    margin-left: 40%;
+.table-wrap {
+  overflow-x: auto;
+  margin-top: 12px;
+}
+.simple-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.simple-table th,
+.simple-table td {
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 1px solid #eee;
+  vertical-align: middle;
+}
+.simple-table thead th {
+  background: #f3f3f3;
+  font-weight: 700;
 }
 
-select{
-    width: 30%;
-    margin-left: 35%;
-    margin-top: 2%;
-    font-size: 0.75em;
-    font-family: 'Ubuntu', sans-serif;
+.action-btn {
+  border: 0;
+  border-radius: 6px;
+  padding: 7px 10px;
+  cursor: pointer;
+  font-weight: 600;
+  background: var(--brand-blue);
+  color: #fff;
+}
+.action-btn.secondary {
+  background: transparent;
+  color: var(--brand-blue);
+  border: 1px solid var(--brand-blue);
+}
+.action-btn + .action-btn {
+  margin-left: 6px;
 }
 
-#colorSearchResult{
-    display: none;
+@media (max-width: 420px) {
+  #loginDiv, #registerDiv, #contactsDiv {
+    margin: 0 10px 20px;
+  }
+}
+.text-success {
+  color: #2d7a32;
 }
 
-#colorAddResult{
-    display: inline-block;
-    font-size: 0.8em;
-    width: 90%;
-    text-align: center;
-    margin-left: 5%;
-    margin-top: 2%;
-    margin-bottom: 1%;
-    font-family: 'Ubuntu', sans-serif;
-    color: #95060a;
+.text-danger {
+  color: #b32020;
+}
+
+.text-muted {
+  color: #777;
+}
+
+.danger-text {
+  color: #b32020;
+  font-weight: 600;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
+.danger-text:hover {
+  text-decoration: underline;
+}
+
+.action-btn + .danger-text {
+  margin-left: 6px;
+}
+
+
+.form-hint {
+  margin-top: 6px;
+  margin-bottom: 24px;
+  font-size: 0.9rem;
+  color: #777;
+  text-align: left;
 }
