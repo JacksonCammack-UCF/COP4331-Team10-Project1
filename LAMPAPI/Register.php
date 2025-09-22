@@ -6,7 +6,7 @@
 	$inData = getRequestInfo();
 	
 	$firstName = $inData["firstName"];
-	$lastName = $inData["lastName"];
+	$lastName = $inData["LastName"];
 	$login = $inData["login"];
 	$password = $inData["password"];
 
