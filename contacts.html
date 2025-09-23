@@ -11,11 +11,21 @@
   <script src="js/code.js"></script>
 </head>
 <body onload="readCookie(); searchContacts();">
-  <h1 id="title">Contacts</h1>
+  <header id="site-header">
+    <a href="http://contacting.fun">
+      <img src="images/logo.png" alt="Contacting Logo" id="site-logo">
+    </a>
+    <a href="https://github.com/JacksonCammack-UCF/COP4331-Team10-Project1" id="github-link" target="_blank">
+      <img src="images/github.png" alt="GitHub" id="github-icon">
+    </a>
+
+  </header>
+
+  <h1 id="title">Contacting.fun</h1>
 
   <div style="max-width: 920px; margin: 0 auto 12px; display: flex; justify-content: space-between; align-items: center;">
     <span id="userName"></span>
-    <button type="button" class="action-btn secondary" onclick="doLogout()">Logout</button>
+    <button type="button" class="action-btn secondary" style="border: 2px solid #3DA3EB; color:#fff;" onclick="doLogout()">Logout</button>
   </div>
 
   <div id="contactsDiv">
@@ -27,7 +37,6 @@
         <input id="lastName"  placeholder="Last name"  autocomplete="family-name" />
         <input id="email"     placeholder="Email"      autocomplete="email" />
         <input id="phone" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="Phone" autocomplete="tel" oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
-
       </div>
 
       <div style="margin-top:10px; display:flex; gap:8px; align-items:center;">

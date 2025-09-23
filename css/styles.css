@@ -7,8 +7,8 @@ html, body {
 }
 
 :root {
-  --brand-blue: #2f4f8a;
-  --brand-blue-dark: #284675;
+  --brand-blue: #82CAFF;
+  --brand-blue-dark: #5EB8F5;
 }
 
 a {
@@ -199,4 +199,31 @@ a:hover {
   font-size: 0.9rem;
   color: #777;
   text-align: left;
+}
+
+#site-header {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 1000;
+}
+
+#site-logo {
+  height: 90px;
+  width: auto;
+  cursor: pointer;
+}
+
+#github-link {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  z-index: 1000;
+}
+
+#github-icon {
+  height: 40px;
+  width: auto;
+  cursor: pointer;
+  opacity: 0.85;
 }
