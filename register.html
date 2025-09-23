@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Create Account</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
+
+  <script src="js/md5.js"></script>
+  <script src="js/code.js"></script>
+</head>
+<body>
+  <h1 id="title">Create an Account</h1>
+
+  <div id="registerDiv">
+    <span id="inner-title">REGISTER</span>
+
+    <form id="registerForm" onsubmit="doRegister(); return false;">
+      <input id="regFirstName" placeholder="First name" autocomplete="given-name" /><br />
+      <input id="regLastName"  placeholder="Last name"  autocomplete="family-name" /><br />
+      <input id="regUsername"  placeholder="Username"   autocomplete="username" /><br />
+      <input id="regPassword" type="password" placeholder="Password" autocomplete="new-password" /><br />
+      <div class="form-hint" id="passwordRequirement">Password must be at least 8 characters.</div>
+
+
+      <button type="submit" id="registerButton" class="buttons">Create Account</button>
+
+      <div id="registerResult" aria-live="polite"></div>
+
+      <div class="sub-actions">
+        <a class="sub-link" href="index.html">Back to Login</a>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

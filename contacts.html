@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Contacts</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
+
+  <script src="js/md5.js"></script>
+  <script src="js/code.js"></script>
+</head>
+<body onload="readCookie(); searchContacts();">
+  <h1 id="title">Contacts</h1>
+
+  <div style="max-width: 920px; margin: 0 auto 12px; display: flex; justify-content: space-between; align-items: center;">
+    <span id="userName"></span>
+    <button type="button" class="action-btn secondary" onclick="doLogout()">Logout</button>
+  </div>
+
+  <div id="contactsDiv">
+    <span id="inner-title">Manage Contacts</span>
+
+    <div style="text-align:left; margin-top:12px;">
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px;">
+        <input id="firstName" placeholder="First name" autocomplete="given-name" />
+        <input id="lastName"  placeholder="Last name"  autocomplete="family-name" />
+        <input id="email"     placeholder="Email"      autocomplete="email" />
+        <input id="phone" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="Phone" autocomplete="tel" oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
+
+      </div>
+
+      <div style="margin-top:10px; display:flex; gap:8px; align-items:center;">
+        <button type="button" class="buttons" style="max-width:200px;" onclick="addContact()">Add Contact</button>
+        <span id="addResult"></span>
+      </div>
+
+      <hr style="margin:16px 0;">
+    </div>
+
+    <div style="display:flex; gap:10px; align-items:center; justify-content:space-between; flex-wrap:wrap;">
+      <input id="search" placeholder="Search contacts…" oninput="(window.debouncedSearch||searchContacts)()" style="flex:1; min-width:220px;" />
+      <select id="limitSelect" onchange="searchContacts()" style="padding:10px; border-radius:6px; border:1px solid #bbb;">
+        <option value="10">10 rows</option>
+        <option value="25">25 rows</option>
+        <option value="50">50 rows</option>
+      </select>
+    </div>
+
+    <div class="table-wrap">
+      <table class="simple-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th style="width:160px;">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="resultsBody"></tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>
