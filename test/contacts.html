@@ -26,7 +26,8 @@
         <input id="firstName" placeholder="First name" autocomplete="given-name" />
         <input id="lastName"  placeholder="Last name"  autocomplete="family-name" />
         <input id="email"     placeholder="Email"      autocomplete="email" />
-        <input id="phone"     placeholder="Phone"      autocomplete="tel" />
+        <input id="phone" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="Phone" autocomplete="tel" oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
+
       </div>
 
       <div style="margin-top:10px; display:flex; gap:8px; align-items:center;">

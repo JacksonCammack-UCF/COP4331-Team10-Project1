@@ -15,9 +15,9 @@
 	}
 	else
 	{
-		$stmt = $conn->prepare("SELECT * FROM Contacts WHERE (FirstName LIKE ? OR LastName LIKE ?) AND UserID=?");
+		$stmt = $conn->prepare("SELECT * FROM Contacts WHERE (FirstName LIKE ? OR LastName LIKE ? OR Email LIKE ? OR Phone LIKE ?) AND UserID=?");
 		$searchName = "%".$inData["search"]."%";
-		$stmt->bind_param("ssi",$searchName,$searchName,$inData["userId"]);
+		$stmt->bind_param("ssi",$searchName,$searchName,$inData["userID"]);
 		$stmt->execute();
 		
 		$result = $stmt->get_result();
@@ -58,7 +58,7 @@
 	
 	function returnWithError( $err )
 	{
-		$retValue = '{"id":0,"firstName":"","lastName":"","phone":"","email":"","error":"'.$err.'"}';
+		$retValue = '{"results":[],"error":"'.$err.'"}';
 		sendResultInfoAsJson( $retValue );
 	}
 	
