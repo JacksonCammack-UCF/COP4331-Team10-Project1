@@ -139,8 +139,8 @@ function doLogout() {
   window.location.href = "index.html";
 }
 
-const validEmail = (value) => !s || /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(value);
-const validPhone = (value) => !s || /^[0-9]{7,20}$/.test(value);
+const validEmail = (value) => !value || /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(value);
+const validPhone = (value) => !value || /^[0-9]{7,20}$/.test(value);
 
 function addContact() {
   setAlert("addResult", "", "");
