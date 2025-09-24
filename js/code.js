@@ -1,3 +1,4 @@
+// written with spacing for readability. code.min.js is on the server
 const isTestPath = location.pathname.startsWith("/test/");
 const urlBase = `${location.origin}${isTestPath ? "/test/LAMPAPI" : "/LAMPAPI"}`;
 const extension = "php";
@@ -94,50 +95,43 @@ function doLogin() {
 }
 
 function saveCookie() {
-  const minutes = 20;
-  const expireDate = new Date();
-  expireDate.setTime(expireDate.getTime() + minutes * 60 * 1000);
-
-  document.cookie = "firstName=" + encodeURIComponent(firstName) + ",lastName=" + encodeURIComponent(lastName) + ",userId=" + encodeURIComponent(userId) + ";expires=" + expireDate.toGMTString() + ";path=/";
+  const TTL_MIN = 20;
+  const payload = {
+    userId,
+    firstName,
+    lastName,
+    expires: Date.now() + TTL_MIN * 60 * 1000
+  };
+  try {
+    localStorage.setItem("user", JSON.stringify(payload));
+  } catch (_) {
+  }
 }
 
 function readCookie() {
-  userId = -1;
-  const cookieParts = (document.cookie || "").split(",");
-
-  for (let i = 0; i < cookieParts.length; i++) {
-    const [key, ...rest] = cookieParts[i].trim().split("=");
-    const value = decodeURIComponent(rest.join("="));
-
-    if (key === "firstName") {
-      firstName = value;
-    } else if (key === "lastName") {
-      lastName = value;
-    } else if (key === "userId") {
-      userId = parseInt(value, 10) || -1;
+  try {
+    const raw = localStorage.getItem("user");
+    if (!raw) { userId = 0; firstName = ""; lastName = ""; return; }
+    const data = JSON.parse(raw) || {};
+    if (data.expires && Date.now() > data.expires) {
+      localStorage.removeItem("user");
+      userId = 0; firstName = ""; lastName = "";
+      return;
     }
-  }
-
-  if (userId < 0) {
-    window.location.href = "index.html";
-    return;
-  }
-
-  const userLabel = $("userName");
-  if (userLabel) {
-    userLabel.textContent = `Logged in as ${firstName} ${lastName}`;
+    userId   = Number(data.userId) || 0;
+    firstName = data.firstName || "";
+    lastName  = data.lastName  || "";
+  } catch (_) {
+    userId = 0; firstName = ""; lastName = "";
   }
 }
 
 function doLogout() {
-  userId = 0;
-  firstName = "";
-  lastName = "";
-
-  document.cookie = "firstName=; expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
-
+  userId = 0; firstName = ""; lastName = "";
+  try { localStorage.removeItem("user"); } catch (_) {}
   window.location.href = "index.html";
 }
+
 
 const validEmail = (value) => !value || /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(value);
 const validPhone = (value) => !value || /^[0-9]{7,20}$/.test(value);
