@@ -243,3 +243,8 @@ a:hover {
   width: 40px;
   height: auto;
 }
+
+#userName {
+  font-size: 18pt;
+  font-weight: 600;
+}

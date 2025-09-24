@@ -124,6 +124,7 @@ function readCookie() {
   } catch (_) {
     userId = 0; firstName = ""; lastName = "";
   }
+  setText("userName", "Logged in as: " + firstName + " " + lastName);
 }
 
 function doLogout() {
@@ -134,7 +135,7 @@ function doLogout() {
 
 
 const validEmail = (value) => !value || /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(value);
-const validPhone = (value) => !value || /^[0-9]{7,20}$/.test(value);
+const validPhone = (value) => !value || /^[0-9]{9,11}$/.test(value);
 
 function addContact() {
   setAlert("addResult", "", "");
